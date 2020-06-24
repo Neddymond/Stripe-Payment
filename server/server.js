@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const ngrok = config.ngrok.enabled ? require("ngrok") : null;
 const app = express();
+require("dotenv").config();
 
 /** Setup useful middleware */
 app.use(
@@ -19,18 +20,20 @@ app.use(
     })
 );
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "../../public")));
+app.use(express.static(path.join(__dirname, "/public")));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
 /** Define routes */
 app.use("/", require("./routes"));
 
+console.log(`port: ${config.port}, node-env: ${config.ngrok.enabled}`);
+
 /** start the server on the correct port */
 const server = app.listen(config.port, () => console.log(`🚀 server listening on port ${server.address().port}`));
 
 /** Turn on the ngrok tunnel in development, which provides both the mandatory HTTPS
- * support for all card payments, and the ability to cinsume webhooks locally.
+ * support for all card payments, and the ability to consume webhooks locally.
  */
 if (ngrok) {
     ngrok.connect({
@@ -43,7 +46,6 @@ if (ngrok) {
         } else {
             console.log(`⚠️ Ngrok error: ${JSON.stringify(err)}`);
         }
-        
         process.exit(1);
     });
 };
