@@ -1,0 +1,5 @@
+:root {
+  --gradient-color: linear-gradient(90deg, #4458dc 0%, #854fee 100%);
+  --min-color: #dc4444;
+  --work-now: linear-gradient(60deg, #000 10%, rgb(0, 251, 255) 90%);
+}

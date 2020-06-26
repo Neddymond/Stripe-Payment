@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stripe Payment</title>
-    <link rel="stylesheet" href="/stylesheets/store.css" type="text/css">
+    <link rel="stylesheet" href="./stylesheets/store.css" type="text/css">
     <link rel="icon" href="/images/logo.png" type="image/png" sizes="104x80">
 </head>
 
@@ -41,10 +41,6 @@
                         <label class="state">
                             <span>State:</span>
                             <input type="text" name="name" class="field" placeholder="CA" required>
-                        </label>
-                        <label class="zip">
-                            <span>ZIP:</span>
-                            <input type="text" name="postal_code" class="field" placeholder="94107" required>
                         </label>
                         <label class="zip">
                             <span>ZIP:</span>
@@ -98,7 +94,7 @@
                             </li>
                             <li>
                                 <input type="radio" name="payment" id="payment-ach_credit_transfer" value="ach_credit_transfer" checked>
-                                <label for="payment-ach_credit_transfer">Bamk Transfer</label>
+                                <label for="payment-ach_credit_transfer">Bank Transfer</label>
                             </li>
                             <li>
                                 <input type="radio" name="payment" id="payment-alipay" value="alipay">
@@ -218,7 +214,7 @@
                             <td class="card-number">4242<span></span>4242<span></span>4242<span></span>4242<span></span></td>
                         </tr>
                         <tr>
-                            <td><a href="https://stripe.com/guides/strong-customer-authentication" target="_blank">Authentication</a>required:</td>
+                            <td><a href="https://stripe.com/guides/strong-customer-authentication" target="_blank">Authentication</a> required:</td>
                             <td class="card-number">4000<span></span>0027<span></span>6000<span></span>3184<span></span></td>
                         </tr>
                     </table>
