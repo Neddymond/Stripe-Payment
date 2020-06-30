@@ -44,7 +44,7 @@ body {
   justify-content: space-between;
   width: 100%;
   height: 80px;
-  background: #fff url(images/logo/) center center no-repeat;
+  background: #fff;
   border-bottom: 1px solid #f3f3ff;
 }
 
@@ -222,7 +222,7 @@ fieldset .select::after {
   right: 20px;
   top: 50%;
   margin-top: -2px;
-  background-image: url(/public/images/dropdown.svg);
+  background-image: url(/images/dropdown.svg);
   pointer-events: none;
 }
 
@@ -322,7 +322,7 @@ button:active {
   content: "";
   width: 21px;
   height: 15px;
-  background: url(/public/images/flags.svg);
+  background: url(/images/flags.svg);
   background-position: -1000px -1000px;
   background-repeat: no-repeat;
   margin-right: 10px;

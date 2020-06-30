@@ -43,12 +43,24 @@ class Store {
     }
   };
 
+  /** Retrieve an SKU for the product where the API version is newer and doesn't include them on v1/product */
+  async loadSkus(product_id) {
+    try {
+      const response = await fetch(`/products/${product_id}/skus`);
+      const skus = await response.json();
+      this.products[product_id].skus = skus;
+    } catch (err) {
+      return { error: err.message };
+    }
+  };
+
   /** Load the product details. */
   LoadProducts() {
     if (!this.productsFetchPromise) {
       this.productsFetchPromise = new Promise(async (resolve) => {
         const productsResponse = await fetch("/products");
         const products = (await productsResponse.json()).data;
+        console.log("products", products);
 
         if (!products.length) {
           throw new Error("No products on Stripe account! Make sure the setup has run properly.");
@@ -58,7 +70,11 @@ class Store {
         for (const product of products) {
           this.products[product.id] = product;
           if (!product.skus) {
-            await this.loadSkus(product.id);
+            console.log("true");
+            const skus = await this.loadSkus(product.id);
+            console.log("skus: ", skus);
+            // console.warn(xhr.responseText);
+            console.warn(XMLHttpRequest.responseText);
           }
         }
         resolve();

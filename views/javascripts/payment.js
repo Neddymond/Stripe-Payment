@@ -1,6 +1,6 @@
-import Stripe from "stripe";
+// import Stripe from "stripe";
 
-// const store = new Store();
+const store = new Store();
 
 (async () => {
   "use strict"
@@ -37,7 +37,7 @@ import Stripe from "stripe";
       iconColor: "#666ee8",
       color: "#31325f",
       // fontWeight: 400,
-      fontFamily: "Helvetica Neue",
+      fontFamily: '"Helvetica Neue"',
       fontSmoothing: "antialiased",
       // fontSize: "15px",
       "::placeholder": {
