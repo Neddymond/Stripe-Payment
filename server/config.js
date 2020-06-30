@@ -1,7 +1,8 @@
 "use strict";
+const path = require("path");
 
 /** load environment for the .env file */
-require("dotenv").config();
+// require('dotenv').config();
 
 module.exports = {
     /** default country for the checkout form */

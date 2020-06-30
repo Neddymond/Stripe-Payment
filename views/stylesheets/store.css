@@ -1052,6 +1052,7 @@ button:active {
 #demo p, td, a {
   color: #fff;
   font-weight: 400;
+  font-size: 12px;
 }
 
 #demo p.label {

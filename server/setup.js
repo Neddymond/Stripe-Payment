@@ -1,38 +1,39 @@
 "user strict"
 
 const config = require("./config");
+console.log(config.stripe);
 const stripe = require("stripe")(config.stripe.secretKey);
 
 const products = [
     {
-        id: "Hood",
-        name: "Hood",
-        price: 999,
-        attributes: {}
+        id: "hood",
+        name: "Obey Hood",
+        price: 2000,
+        attributes: {size: "large", gender: "Unisex"}
     },
     {
         id: "toy",
         name: "Teddy Bear",
-        price: 999,
-        attributes: {}
+        price: 1500,
+        attributes: {size: "large", color: "pink"}
     },
     {
         id: "shoe",
-        name: "",
-        price: 999,
-        attributes: {size: "", gender: ""}
+        name: "stripo EVO",
+        price: 5000,
+        attributes: {size: "45", gender: "Man"}
     },
     {
         id: "book",
         name: "Deep Work",
-        price: 999,
-        attributes: {author: "Cal Newport", pages: ""},
+        price: 1889,
+        attributes: {author: "Cal Newport", pages: "260"},
     },
     {
         id: "lipstick",
-        name: "",
-        price: 999,
-        attributes: ""
+        name: "Rouge Pur Couture",
+        price: 800,
+        attributes: {color: "Red", brand: "YSL"}
     }
 ];
 
@@ -54,7 +55,7 @@ const createStoreProducts = async () => {
                     price: product.price,
                     currency: config.currency,
                     attributes: product.attributes,
-                    inventory: {type: "infinte"}
+                    inventory: {type: "infinite"}
                 });
 
                 return {stripeProduct, stripeSku};

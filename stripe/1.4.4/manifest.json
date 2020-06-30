@@ -1,0 +1,22 @@
+{
+    "version": "1.4.4",
+    "architecture": {
+        "32bit": {
+            "url": "https://github.com/stripe/stripe-cli/releases/download/v1.4.4/stripe_1.4.4_windows_i386.zip",
+            "bin": [
+                "stripe.exe"
+            ],
+            "hash": "f6ba15aa146d60b25ea24cc853ff7f16e017535386ceec3d70621e4fd66dbfc0"
+        },
+        "64bit": {
+            "url": "https://github.com/stripe/stripe-cli/releases/download/v1.4.4/stripe_1.4.4_windows_x86_64.zip",
+            "bin": [
+                "stripe.exe"
+            ],
+            "hash": "8f56353c9a36ca5960a8925ffc8e1c0582292503fd26d913308be070f8388d01"
+        }
+    },
+    "homepage": "https://stripe.com",
+    "license": "Apache 2.0",
+    "description": "Stripe CLI utility"
+}
