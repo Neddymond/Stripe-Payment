@@ -87,5 +87,84 @@ class Store {
     }
   };
 
+  /** Create the PaymentIntent with the cart details */
+  async updatePaymentIntentWithShippingCost(paymentIntent, items, shippingOption) {
+    try {
+      const response = await fetch(`/payment_intents/${paymentIntent}/shipping_change`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ shippingOption, item })
+      });
 
-}
+      const data = await response.json();
+      if (data.error) {
+        return { error: data.error };
+      } else {
+        return data;
+      }
+    } catch (err) {
+      return { error: err.message };
+    }
+  };
+
+  /** Format a price (assuming a two-decimal currency like EUR or USD for simplicity) */
+  formatPrice(amount, currency) {
+    let price = (amount / 100).toFixed(2);
+    let numberFormat = new Intl.NumberFormat(["en-US"], {
+      style: "currency",
+      currency: currency,
+      currencyDisplay: "symbol"
+    });
+
+    return numberFormat.format(price);
+  };
+
+  /** Maniplate the DOM to display the payment summary on the right panel */
+  async displayPaymentSummary() {
+    // Fetch all the products from the store to get all the details (name, price, etc.).
+    await this.LoadProducts();
+    const orderItems = document.getElementById("order-items");
+    const orderTotal = document.getElementById("order-total");
+    let currency;
+
+    // Build and append the line items to the payment summary.
+    for (let [id, product] of Object.entries(this.products)) {
+      const randomQuantity = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      const quantity = randomQuantity(1, 2);
+      let sku = product.skus.data[0];
+      let skuPrice = this.formatPrice(sku.price, sku.currency);
+      let lineItemPrice = this.formatPrice(sku.price * quantity, sku.currency);
+      let lineItem = document.createElement("div");
+      lineItem.classList.add("line-item");
+
+      lineItem.innerHTML = `
+        <img class="image" src="/images/products/${product.id}.png" alt="${product.name}">
+        <div class="label">
+          <p class="product">${product.name}</p>
+          <p class="sku">${Object.values(sku.attributes).join(" ")}</p>
+        </div>
+        <p class="count">${quantity} x ${skuPrice}</p>
+        <p class="price">${lineItemPrice}</p>`;
+
+      orderItems.appendChild(lineItem);
+      currency = sku.currency;
+      this.lineItems.push({
+        product: product.id,
+        sku: sku.id,
+        quantity
+      });
+    }
+
+    // Add the subtotal and the total to the payment summary
+    const total = this.formatPrice(this.getPaymentTotal(), currency);
+    orderTotal.querySelector("data-subtotal").innerHTML = total;
+    orderTotal.querySelector("data-total").innerHTML = total;
+  };
+};
+
+window.Store = new Store();
