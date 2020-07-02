@@ -70,11 +70,7 @@ class Store {
         for (const product of products) {
           this.products[product.id] = product;
           if (!product.skus) {
-            console.log("true");
-            const skus = await this.loadSkus(product.id);
-            console.log("skus: ", skus);
-            // console.warn(xhr.responseText);
-            console.warn(XMLHttpRequest.responseText);
+            await this.loadSkus(product.id);
           }
         }
         resolve();
@@ -178,8 +174,8 @@ class Store {
 
     // Add the subtotal and the total to the payment summary
     const total = this.formatPrice(this.getPaymentTotal(), currency);
-    orderTotal.querySelector("data-subtotal").innerHTML = total;
-    orderTotal.querySelector("data-total").innerHTML = total;
+    orderTotal.querySelector(".data-subtotal").innerHTML = total;
+    orderTotal.querySelector(".data-total").innerHTML = total;
   };
 };
 

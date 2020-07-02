@@ -4,7 +4,9 @@ const config = require("./config");
 const { products } = require("./inventory");
 const express = require("express");
 const router = express.Router();
-const stripe = require("stripe")(config.stripe.secretKey);
+const stripe = require("stripe")(config.stripe.secretKey, { 
+    apiVersion: config.stripe.apiVersion 
+});
 
 /** Render the main app html */
 router.get("/", (req, res) => {
@@ -158,6 +160,12 @@ router.get("/products", async (req, res) => {
 /** Retrieve a product by ID */
 router.get("/products/:id", async (req, res) => {
     res.json(await products.retrieve(req.params.id));
+});
+
+/** Retrieve the skus of a product */
+router.get("/products/:id/skus", async (req, res) => {
+    const skus = await stripe.skus.list({ limit: 5, product: req.params.id });
+    res.json(skus);
 });
 
 /** Retrieve the paymentIntent status. */

@@ -2,7 +2,9 @@
 
 const config = require("./config");
 console.log(config.stripe);
-const stripe = require("stripe")(config.stripe.secretKey);
+const stripe = require("stripe")(config.stripe.secretKey, { 
+    apiVersion: config.stripe.apiVersion 
+});
 
 const products = [
     {
@@ -37,7 +39,7 @@ const products = [
     }
 ];
 
-/** creates a collection pf stripe products and SKUs to use in your storefront */
+/** creates a collection of stripe products and SKUs to use in your storefront */
 const createStoreProducts = async () => {
     try {
         const stripeProducts = await Promise.all(

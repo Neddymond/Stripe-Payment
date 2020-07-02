@@ -1,9 +1,8 @@
 // import Stripe from "stripe";
 
-const store = new Store();
-
 (async () => {
   "use strict"
+  const store = new Store();
 
   // Retrieve the configuration for the store
   const config = await store.getConfig();
@@ -37,7 +36,7 @@ const store = new Store();
       iconColor: "#666ee8",
       color: "#31325f",
       // fontWeight: 400,
-      fontFamily: '"Helvetica Neue"',
+      fontFamily: '"Helvetica Neue", Helvetica',
       fontSmoothing: "antialiased",
       // fontSize: "15px",
       "::placeholder": {
