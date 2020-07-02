@@ -141,6 +141,7 @@ class Store {
 
     // Build and append the line items to the payment summary.
     for (let [id, product] of Object.entries(this.products)) {
+      console.log("storeProducts: ", product);
       const randomQuantity = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);

@@ -8,7 +8,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: MyFont;
+  font-family: Myfont;
   letter-spacing: -.005em;
   font-size: 15px;
   color: #333;
@@ -34,7 +34,7 @@ body {
 }
 
 #main.checkout:not(.success):not(.error) {
-  width: calc(100% - 450%);
+  width: calc(100% - 450px);
 }
 
 /* Header */
@@ -937,7 +937,7 @@ button:active {
 
 /* Order Summary */
 #summary {
-  /* position: fixed;
+  position: fixed;
   top: 0;
   right: -450px;
   bottom: 0;
@@ -945,7 +945,7 @@ button:active {
   overflow: auto;
   height: 100%;
   box-shadow: 0 2px 19px 4px rgba(0, 0, 0, 0.04);
-  transition: right 0.3s ease-in-out; */
+  transition: right 0.3s ease-in-out;
   background: #fff;
 }
 

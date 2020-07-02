@@ -82,7 +82,7 @@
   const iban = elements.create("iban", ibanOPtions);
 
   // Mount the IBAN Element on the page
-  card.mount("#iban-element");
+  iban.mount("#iban-element");
 
   // Monitor change events on the IBAN Elements to display any errors.
   iban.on("change", ({ error, bankName }) => {
@@ -113,7 +113,7 @@
   });
 
   // Mount the iDEAL Bank Element on the page.
-  card.mount("#ideal-bank-element");
+  idealBank.mount("#ideal-bank-element");
 
   /**
    * Implement a Stripe Payment Request Button Element. 
@@ -124,7 +124,8 @@
    */ 
 
   // Make sure all data is loaded from the store to compute the payment amount.
-  await store.loadProduts();
+  await store.LoadProducts()
+  // console.log("config: ", loadedProducts);
 
   // Create the payment request.
   const paymentRequest = stripe.paymentRequest({
@@ -548,7 +549,73 @@
     },
     card: {
       name: "Card",
-      flow: "none"
+      flow: "none",
+      countries: [
+        "AU",
+        "AT",
+        "BE",
+        "BG",
+        "CA",
+        "CY",
+        "CZ",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "DE",
+        "GR",
+        "HK",
+        "IE",
+        "IT",
+        "JP",
+        "LV",
+        "LT",
+        "LU",
+        "MT",
+        "MX",
+        "NL",
+        "NZ",
+        "NO",
+        "PL",
+        "PT",
+        "RO",
+        "SG",
+        "SK",
+        "SI",
+        "ES",
+        "SE",
+        "CH",
+        "GB",
+        "US"
+      ],
+      currencies: [
+        "AUD",
+        "RBL",
+        "GBP",
+        "BGN",
+        "CAD",
+        "CZK",
+        "DKK",
+        "EUR",
+        "HKD",
+        "HUF",
+        "ILS",
+        "JPY",
+        "MYR",
+        "MXN",
+        "TWD",
+        "NZD",
+        "NOK",
+        "PHP",
+        "PLN",
+        "RON",
+        "RUB",
+        "SGD",
+        "SEK",
+        "CHF",
+        "THB",
+        "USD"
+      ]
     },
     eps: {
       name: "EPS",
@@ -663,12 +730,13 @@
   // Show only the payment methods that are relevant to the selected country.
   const showRelevantPaymentMethdos = (country) => {
     if (!country) {
-      country = form.querySelector('select[name=country] option:checked').value;
+      form.querySelector('select[name=country] option:checked').value;
     }
 
     const paymentInputs = form.querySelectorAll("input[name=payment]");
     for (let i = 0; i < paymentInputs.length; i++) {
       let input = paymentInputs[i];
+      console.log("inputValue: ", input.value);
       input.parentElement.classList.toggle(
         "visible", 
         input.value === card || (config.paymentMethods.includes(input.value) && 

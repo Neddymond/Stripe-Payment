@@ -8,6 +8,11 @@ const listProducts = async () => {
     return await stripe.products.list({limit: 5, type: "good"});
 };
 
+/** List all the SKUs */
+const ListSkus = async () => {
+    return await stripe.skus.list({ limit: 5 });
+}
+
 /** Retrieve a project by ID */
 const retrieveProduct = async (productId) => {
     return await stripe.products.retrieve(productId);
@@ -21,5 +26,6 @@ const getShippingCost = (shippingOption) => {
 exports.products = {
     list: listProducts,
     retrieve: retrieveProduct,
-    getShippingCost
+    getShippingCost,
+    listSku: ListSkus
 };
