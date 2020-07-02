@@ -30,6 +30,9 @@ module.exports = {
         /** The two-letter country code of your Stripe account (required for payment Request). */
         country: process.env.STRIPE_ACCOUNT_COUNTRY || "US",
 
+        // API version to set for this app
+        apiVersion: "2020-03-02",
+
         /** Test key is used for development and live key is used for real changes in production */
         publishableKey: process.env.STRIPE_PUBLIC_KEY,
         secretKey: process.env.STRIPE_SECRET_KEY,
