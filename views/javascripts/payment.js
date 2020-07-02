@@ -724,13 +724,13 @@
     zipLabel.parentElement.classList.toggle('with-state', country === "US");
     //Update the ZIP label to make it more relevant for each country.
     form.querySelector("label.zip span").innerText = country === "US" ?
-      "ZIP" : country = "GB" ? "PostCode" : "Postal Code";
+      "ZIP" : country === "GB" ? "PostCode" : "Postal Code";
   };
 
   // Show only the payment methods that are relevant to the selected country.
   const showRelevantPaymentMethdos = (country) => {
     if (!country) {
-      form.querySelector('select[name=country] option:checked').value;
+      country = form.querySelector('select[name=country] option:checked').value;
     }
 
     const paymentInputs = form.querySelectorAll("input[name=payment]");
@@ -759,6 +759,7 @@
     form.querySelector(".payment-info.sepa_debit").classList.remove("visible");
     form.querySelector(".payment-info.wechat").classList.remove("visible");
     form.querySelector(".payment-info.redirect").classList.remove("visible");
+    updateButtonLabel(paymentInputs[0].value);
   };
 
   // Listen to changes to the payment method selector.
@@ -786,10 +787,10 @@
         .classList.toggle("visible", payment === "wechat");
       form
         .querySelector(".payment-info.redirect")
-        .classList.toggle("visible", payment === "redirect");
+        .classList.toggle("visible", flow === "redirect");
       form
         .querySelector(".payment-info.receiver")
-        .classList.toggle("visible", payment === "receiver");
+        .classList.toggle("visible", flow === "receiver");
       document
         .getElementById(".card-errors")
         .classList.remove("visible", payment !== "card");
