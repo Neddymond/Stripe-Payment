@@ -7,7 +7,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "env-cmd -f ./config/custom.env nodemon -e html,css node server/server.js",
+    "start": "node server/server.js",
     "setup": "env-cmd -f ./config/custom.env node server/setup.js",
     "setup-cli": "stripe login --project-name=stripe-payment",
     "webhook": "stripe listen --project-name=stripe-payment --forward-to http://localhost:8000/webhook"
