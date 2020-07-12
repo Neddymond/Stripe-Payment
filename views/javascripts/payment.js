@@ -125,7 +125,6 @@
 
   // Make sure all data is loaded from the store to compute the payment amount.
   await store.LoadProducts()
-  // console.log("config: ", loadedProducts);
 
   // Create the payment request.
   const paymentRequest = stripe.paymentRequest({
@@ -736,7 +735,6 @@
     const paymentInputs = form.querySelectorAll("input[name=payment]");
     for (let i = 0; i < paymentInputs.length; i++) {
       let input = paymentInputs[i];
-      console.log("inputValue: ", input.value);
       input.parentElement.classList.toggle(
         "visible", 
         input.value === card || (config.paymentMethods.includes(input.value) && 

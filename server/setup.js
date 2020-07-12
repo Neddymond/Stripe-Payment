@@ -1,7 +1,6 @@
 "user strict"
 
 const config = require("./config");
-console.log(config.stripe);
 const stripe = require("stripe")(config.stripe.secretKey, { 
     apiVersion: config.stripe.apiVersion 
 });
@@ -29,7 +28,7 @@ const products = [
         id: "book",
         name: "Deep Work",
         price: 1889,
-        attributes: {author: "Cal Newport", pages: "260"},
+        attributes: {author: "Cal Newport", pages: "260 pages"},
     },
     {
         id: "lipstick",

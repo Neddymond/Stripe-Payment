@@ -19,13 +19,11 @@ const calculatePaymentAmount = async (items) => {
 
     /** look up the sku for the item so we can get the current price. */
     const skus = productList.data;
-    // console.log("skus: ", skus);
 
     const total = items.reduce((a, item) => {
         const sku = skus.filter((sku) => sku.id === item.parent)[0];
         return a + sku.price * item.quantity;
     }, 0);
-    console.log(total);
     return total; 
 };
 
@@ -33,7 +31,6 @@ const calculatePaymentAmount = async (items) => {
 router.post("/payment_intents", async (req, res, next) => {
     let { currency, items } = req.body;
     const amount = await calculatePaymentAmount(items);
-    console.log("amount: ", amount);
 
     try {
         const paymentIntent = await stripe.paymentIntents.create({

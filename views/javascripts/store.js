@@ -60,7 +60,6 @@ class Store {
       this.productsFetchPromise = new Promise(async (resolve) => {
         const productsResponse = await fetch("/products");
         const products = (await productsResponse.json()).data;
-        console.log("products", products);
 
         if (!products.length) {
           throw new Error("No products on Stripe account! Make sure the setup has run properly.");
@@ -141,7 +140,6 @@ class Store {
 
     // Build and append the line items to the payment summary.
     for (let [id, product] of Object.entries(this.products)) {
-      console.log("storeProducts: ", product);
       const randomQuantity = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
